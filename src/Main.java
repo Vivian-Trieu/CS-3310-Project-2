@@ -41,8 +41,8 @@ public class Main {
         long startTime = System.nanoTime();
 
         // Calculate all pairs shortest paths
-        FloydWarshalls obj1 = new FloydWarshalls(n);
-        obj1.floydwarshallWorking(adj_matrix);
+        FloydWarshalls graph = new FloydWarshalls(n);
+        graph.floydwarshallWorking(adj_matrix);
 
         // End timer
         long endTime = System.nanoTime();
@@ -50,5 +50,6 @@ public class Main {
 
         System.out.println("Total Time to Execute Program (in ns): " + totalTime);
     }
+    
     
 }
