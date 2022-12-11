@@ -1,5 +1,5 @@
 public class Dijkstra {
-    public static void dijkstra(int[][] graph, int source){
+    public void dijkstra(int[][] graph, int source){
         int numberOfVertices = graph.length;
         boolean[] visitedV = new boolean[numberOfVertices];
         int[] dist = new int[numberOfVertices];
@@ -20,6 +20,7 @@ public class Dijkstra {
                 }
             }
         }
+
         for (int i = 0; i < dist.length; i++) {
             System.out.println(String.format("Distance from %s to %s is %s", source, i, dist[i]));
         }
@@ -31,7 +32,7 @@ public class Dijkstra {
         for (int i = 0; i < dist.length; i++) {
             if (!visitedV[i] && dist[i] < minDist) {
                 minDist = dist[i];
-                minDist = i;
+                minDistV = i;
             }
         }
         return minDistV;
