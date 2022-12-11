@@ -32,6 +32,7 @@ public class Main {
 
         scan.close();
         runFloydWarshalls(adj_matrix, n);
+        runDijkstra(adj_matrix);
     }
 
     public static void runFloydWarshalls (int[][] adj_matrix, int n) {
@@ -51,5 +52,20 @@ public class Main {
         System.out.println("Total Time to Execute Program (in ns): " + totalTime);
     }
     
-    
+    public static void runDijkstra (int[][] adj_matrix) {
+        System.out.println("Dijkstra's Algorithm: ");
+
+        // Start timer
+        long startTime = System.nanoTime();
+
+        // Calculate all pairs shortest paths
+        Dijkstra graph = new Dijkstra();
+        graph.dijkstra(adj_matrix, 0);
+
+        // End timer
+        long endTime = System.nanoTime();
+        long totalTime = endTime - startTime;
+
+        System.out.println("Total Time to Execute Program (in ns): " + totalTime);
+    }
 }
