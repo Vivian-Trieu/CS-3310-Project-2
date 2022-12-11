@@ -1,8 +1,7 @@
 import java.util.*;
-import java.io.*;
 
 public class Main {
-    public static final int INFINITY = 999;
+    public static final int INF = 999;
  
     public static void main(String[] args) {
         int adj_matrix[][];
@@ -14,19 +13,19 @@ public class Main {
  
         adj_matrix = new int[n + 1][n + 1];
         System.out.println("Enter the Weighted Matrix for the graph");
-        for (int js = 1; js <= n; js++)
+        for (int i = 1; i <= n; i++)
         {
-            for (int id = 1; id <= n; id++)
+            for (int j = 1; j <= n; j++)
             {
-                adj_matrix[js][id] = scan.nextInt();
-                if (js == id)
+                adj_matrix[i][j] = scan.nextInt();
+                if (i == j)
                 {
-                    adj_matrix[js][id] = 0;
+                    adj_matrix[i][j] = 0;
                     continue;
                 }
-                if (adj_matrix[js][id] == 0)
+                if (adj_matrix[i][j] == 0)
                 {
-                    adj_matrix[js][id] = INFINITY;
+                    adj_matrix[i][j] = INF;
                 }
             }
         }
@@ -36,11 +35,20 @@ public class Main {
     }
 
     public static void runFloydWarshalls (int[][] adj_matrix, int n) {
-        System.out.println("Floyd -Warshall Algorithm: ");
-        
+        System.out.println("Floyd-Warshall Algorithm: ");
+
+        // Start timer
+        long startTime = System.nanoTime();
+
+        // Calculate all pairs shortest paths
         FloydWarshalls obj1 = new FloydWarshalls(n);
         obj1.floydwarshallWorking(adj_matrix);
-       
+
+        // End timer
+        long endTime = System.nanoTime();
+        long totalTime = endTime - startTime;
+
+        System.out.println("Total Time to Execute Program (in ns): " + totalTime);
     }
     
 }
