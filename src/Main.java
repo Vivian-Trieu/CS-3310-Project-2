@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class Main {
-    public static final int INF = 999;
  
     public static void main(String[] args) {
         int n = 10;              // number of vertices
+        
         Random r = new Random();
         int adj_matrix[][] = createMatrix(n, r, 0, 1);
         fillMatrix(adj_matrix, n, r, 1, 10);
@@ -39,20 +39,20 @@ public class Main {
         
         printMatrix(adj_matrix, n);
 
-        //runFloydWarshalls(adj_matrix, n);
+        runfloydWarshall(adj_matrix, n);
         runDijkstra(adj_matrix, n);
     }
 
-    public static void runFloydWarshalls (int[][] adj_matrix, int n) {
+    public static void runfloydWarshall (int[][] adj_matrix, int n) {
         System.out.println("Floyd-Warshall Algorithm: ");
 
         // Start timer
         long startTime = System.nanoTime();
 
         // Calculate all pairs shortest paths
-        floydWarshall graph = new floydWarshall();
-        graph.algo(adj_matrix);
-
+        FloydWarshalls graph = new FloydWarshalls();
+        int[][] a = graph.floydwarshall(adj_matrix, n);
+        printMatrix(a, n);
         // End timer
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
@@ -68,11 +68,13 @@ public class Main {
 
         // Calculate all pairs shortest paths
         Dijkstra graph = new Dijkstra();
-        graph.algo(adj_matrix, 0);
+        graph.dijkstra(adj_matrix, 0);
 
         // End timer
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
+
+
 
         System.out.println("Total Time to Execute Program (in ns): " + totalTime);
     }
@@ -99,7 +101,11 @@ public class Main {
         
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                m[i][j] = random.nextInt(max - min + 1) + min;
+                if (i == j) {
+                    m[i][j] = 0;
+                } else {
+                    m[i][j] = random.nextInt(max - min + 1) + min;
+                }
             }
         }
 
@@ -107,11 +113,13 @@ public class Main {
     }
 
     private static int[][] fillMatrix(int[][] m, int n, Random random, int min, int max) {
-
+        final int INF = 999;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (m[i][j] == 1) 
                     m[i][j] = random.nextInt(max - min + 1) + min;
+                if (m[i][j] == 0)
+                    m[i][j] = INF;   
             }
         }
         return m;
