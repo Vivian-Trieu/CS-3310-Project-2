@@ -17,7 +17,7 @@ public class Main {
 
         runfloydWarshall(adj_matrix, n);
         System.out.println();
-        
+
         runDijkstra(adj_matrix, n);
     }
 
@@ -30,10 +30,13 @@ public class Main {
         // Calculate all pairs shortest paths
         FloydWarshalls graph = new FloydWarshalls();
         int[][] a = graph.floydwarshall(adj_matrix, n);
-        printMatrix(a, n);
+        
         // End timer
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
+
+        // Print distance matrix
+        printMatrix(a, n);
 
         System.out.println("Total Time to Execute Program (in ns): " + totalTime);
     }
@@ -48,14 +51,13 @@ public class Main {
         Dijkstra graph = new Dijkstra();
         int[] a = graph.dijkstra(adj_matrix, 0);
 
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(String.format("Distance from %s to %s is %s", 0, i, a[i]));
-        }
-
         // End timer
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
 
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(String.format("Distance from %s to %s is %s", 0, i, a[i]));
+        }
         System.out.println("Total Time to Execute Program (in ns): " + totalTime);
     }
 
