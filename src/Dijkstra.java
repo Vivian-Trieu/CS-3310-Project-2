@@ -1,6 +1,6 @@
 public class Dijkstra {
 
-    public void algo(int[][] graph, int source){
+    public int[] dijkstra(int[][] graph, int source){
 
         int n = graph.length;   // number of vertices
         boolean[] visitedV = new boolean[n];
@@ -23,9 +23,7 @@ public class Dijkstra {
             }
         }
 
-        for (int i = 0; i < dist.length; i++) {
-        System.out.println(String.format("Distance from %s to %s is %s", source, i, dist[i]));
-      }
+        return dist;
     }
 
     private static int findMinDistance(int[] dist, boolean[] visitedV) {
