@@ -37,21 +37,6 @@ class FloydWarshalls
         return distMatrix;
     }
     
-    void printMatrix(int matrix[][], int n) {
-        for (int i = 0; i < n; i++)
-            System.out.print("\t" + i);
-        
-        System.out.println();
-
-        for (int i = 0; i < n; ++i) {
-            System.out.print(i + "\t");
-            for (int j = 0; j < n; ++j) {
-                System.out.print(matrix[i][j] + "\t");
-            }
-            System.out.println();
-          }
-    }
-    
 }
  
 
