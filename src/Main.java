@@ -8,38 +8,16 @@ public class Main {
         Random r = new Random();
         int adj_matrix[][] = createMatrix(n, r, 0, 1);
         fillMatrix(adj_matrix, n, r, 1, 10);
- 
-        /* Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the number of vertices");
-        n = scan.nextInt();
- 
-        adj_matrix = new int[n + 1][n + 1];
-        System.out.println("Enter the Weighted Matrix for the graph");
-        for (int i = 1; i <= n; i++)
-        {
-            for (int j = 1; j <= n; j++)
-            {
-                adj_matrix[i][j] = scan.nextInt();
-                if (i == j)
-                {
-                    adj_matrix[i][j] = 0;
-                    continue;
-                }
-                if (adj_matrix[i][j] == 0)
-                {
-                    adj_matrix[i][j] = INF;
-                }
-            }
-        }
-
-        scan.close(); */
 
         System.out.println("Adjacency Matrix:");
 
         
         printMatrix(adj_matrix, n);
+        System.out.println();
 
         runfloydWarshall(adj_matrix, n);
+        System.out.println();
+        
         runDijkstra(adj_matrix, n);
     }
 
@@ -68,13 +46,15 @@ public class Main {
 
         // Calculate all pairs shortest paths
         Dijkstra graph = new Dijkstra();
-        graph.dijkstra(adj_matrix, 0);
+        int[] a = graph.dijkstra(adj_matrix, 0);
+
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(String.format("Distance from %s to %s is %s", 0, i, a[i]));
+        }
 
         // End timer
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
-
-
 
         System.out.println("Total Time to Execute Program (in ns): " + totalTime);
     }
@@ -95,7 +75,7 @@ public class Main {
         }
     }
 
-    // Creates matrix of 0s and 1s, 0 if no edge and 1 if there is an edge
+    // Creates matrix of 0s and 1s, 0 if no edge and 1 if there is an edge. No self-loops
     private static int[][] createMatrix(int n, Random random, int min, int max) {
         int [][] m = new int[n][n];
         
@@ -118,7 +98,7 @@ public class Main {
             for (int j = 0; j < n; j++) {
                 if (m[i][j] == 1) 
                     m[i][j] = random.nextInt(max - min + 1) + min;
-                if (m[i][j] == 0)
+                if (m[i][j] == 0 && i != j)
                     m[i][j] = INF;   
             }
         }
