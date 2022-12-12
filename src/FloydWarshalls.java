@@ -1,6 +1,4 @@
-class FloydWarshalls
-{
-    /*
+/*
  * Floyd-Warshall Algorithm:
  * n = no of vertices
  * A = matrix of dimension n*n
@@ -13,7 +11,7 @@ class FloydWarshalls
  *              Ak[i, j] = min (Ak-1[i, j], Ak-1[i, k] + Ak-1[k, j])
  * return A
  */
-
+class FloydWarshalls {
     public int[][] floydwarshall(int graph[][], int n) {
 
         int distMatrix[][] = new int[n][n];
